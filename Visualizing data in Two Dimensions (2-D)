@@ -1,0 +1,21 @@
+import seaborn as sns    
+cols = ['curved','rootemp', 'humidity',
+       'voltage', 'pressure','speed','diameter']
+
+sns.pairplot(df[cols], size=2.5)
+plt.tight_layout()
+#plt.savefig('C:/.../2D_1.png', dpi=300)
+plt.show()
+
+s1=pd.concat([df.speed/100,df.voltage,df.pressure],axis=1)
+s1.plot.hist(alpha=0.7)
+#plt.savefig('C:/.../2D_2.png', dpi=300)
+plt.show()
+
+df.plot.scatter(x='voltage',y='diameter',c='r',marker='o')
+#plt.savefig('C:/.../2D_3.png', dpi=300)
+df.plot.scatter(x='speed',y='diameter',c='b',marker='^')
+#plt.savefig('C:/.../2D_4.png', dpi=300)
+df.plot.scatter(x='curved',y='diameter',c='gold',marker='*')
+#plt.savefig('C:/.../2D_5.png', dpi=300)
+plt.show()
