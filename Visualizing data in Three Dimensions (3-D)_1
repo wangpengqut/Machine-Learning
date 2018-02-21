@@ -1,0 +1,37 @@
+# Scatter Plot with Hue for visualizing data in 3-D
+cols = ['rootemp','humidity','voltage','speed','CUR','diameter']
+pp = sns.pairplot(df[cols], hue='CUR', size=1.8, aspect=1.8, 
+                  palette={"N": "#FFD900", "Y": "#57BBC3"},
+                  plot_kws=dict(edgecolor="black", linewidth=0.5))
+fig = pp.fig 
+fig.subplots_adjust(top=0.93, wspace=0.3)
+t = fig.suptitle('Curved Phenomenon Attributes Pairwise Plots', fontsize=14)
+#plt.savefig('C:/...Pictures/2D_7.png', dpi=300)
+plt.show()
+
+# Visualizing 3-D numeric data with Scatter Plots
+# length, breadth and depth
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+xs = df['speed']
+ys = df['voltage']
+zs = df['diameter']
+ax.scatter(xs, ys, zs, c='purple',s=50, alpha=0.6, edgecolors='w')
+
+ax.set_xlabel('Speed')
+ax.set_ylabel('Voltage')
+ax.set_zlabel('Diameter')
+#plt.savefig('C:/...Pictures/2D_7.png', dpi=300)
+plt.show()
+
+# Visualizing 3-D numeric data with a bubble chart
+# length, breadth and size
+plt.scatter(df['speed'], df['voltage'], s=df['diameter'], 
+            alpha=0.7, edgecolors='w')
+
+plt.xlabel('Speed')
+plt.ylabel('Voltage')
+plt.title('Speed - Voltage - Diameter',y=1.05)
+#plt.savefig('C:/...Pictures/2D_7.png', dpi=300)
+plt.show()
