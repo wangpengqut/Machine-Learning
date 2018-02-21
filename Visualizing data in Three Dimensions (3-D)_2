@@ -1,0 +1,35 @@
+# Visualizing 3-D mix data using scatter plots
+# leveraging the concepts of hue for categorical dimension
+jp = sns.pairplot(df, x_vars=["speed"], y_vars=["diameter"], size=4.5,
+                  hue="CUR", palette={"Y": "#FF9999", "N": "#FFE888"},
+                  plot_kws=dict(edgecolor="k", linewidth=0.5))
+                  
+# we can also view relationships\correlations as needed                  
+lp = sns.lmplot(x='speed', y='diameter', hue='CUR', 
+                palette={"Y": "#FF9999", "N": "#FFE888"},
+                data=df, fit_reg=True, legend=True,
+                scatter_kws=dict(edgecolor="k", linewidth=0.5))
+#plt.savefig('C:/...Pictures/2D_7.png', dpi=300)
+plt.show()
+
+# Visualizing 3-D mix data using kernel density plots
+# leveraging the concepts of hue for categorical dimension
+s1=df[df.CUR=='Y']
+s2=df[df.CUR=='N']
+ax = sns.kdeplot(s2['speed'], s2['voltage'],
+                  cmap="YlOrBr", shade=True, shade_lowest=False)
+ax = sns.kdeplot(s1['speed'], s1['voltage'],
+                  cmap="Reds", shade=True, shade_lowest=False)
+#plt.savefig('C:/...Pictures/2D_7.png', dpi=300)
+plt.show()
+
+# Visualizing 3-D mix data using kernel density plots
+# leveraging the concepts of hue for categorical dimension
+s3=df[df.CUR=='Y']
+s4=df[df.CUR=='N']
+ax = sns.kdeplot(s4['voltage'], s4['diameter'],
+                  cmap="YlOrBr", shade=True, shade_lowest=False)
+ax = sns.kdeplot(s3['voltage'], s3['diameter'],
+                  cmap="Reds", shade=True, shade_lowest=False)
+#plt.savefig('C:/...Pictures/2D_7.png', dpi=300)
+plt.show()
