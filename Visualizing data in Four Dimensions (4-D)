@@ -20,3 +20,29 @@ ax.set_xlabel('Speed')
 ax.set_ylabel('Voltage')
 ax.set_zlabel('Diameter')
 plt.show()
+
+
+# Visualizing 4-D mix data using bubble plots
+# leveraging the concepts of hue and size
+size = df['diameter']*10
+fill_colors = ['#FF9999' if wt=='Y' else '#FFE888' for wt in list(df['CUR'])]
+edge_colors = ['red' if wt=='Y' else 'orange' for wt in list(df['HL'])]
+
+plt.scatter(df['speed'], df['voltage'], s=size, 
+            alpha=0.4, color=fill_colors, edgecolors=edge_colors)
+
+plt.xlabel('Speed')
+plt.ylabel('Voltage')
+plt.title('Diameter - Speed - Voltage - Type',y=1.05)
+
+# Visualizing 4-D mix data using scatter plots
+# leveraging the concepts of hue and facets for > 1 categorical attributes
+g = sns.FacetGrid(df, col="HL", hue='ns', 
+                  col_order=['H', 'L'], hue_order=['M', 'L'],
+                  aspect=1.2, size=3.5, palette=sns.light_palette('navy', 4)[1:])
+g.map(plt.scatter, "voltage", "diameter", alpha=0.9, 
+      edgecolor='white', linewidth=0.5, s=100)
+fig = g.fig 
+fig.subplots_adjust(top=0.8, wspace=0.3)
+fig.suptitle('HL - Diameter - NuzzleSize - Voltage', fontsize=14)
+l = g.add_legend(title='Diameter Class')
