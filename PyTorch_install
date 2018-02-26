@@ -1,0 +1,8 @@
+conda install pytorch torchvision cuda90 pytorch
+
+import torch
+torch.Tensor(5,3)
+
+torch.Tensor(5,3).uniform_(-1,1)
+
+torch.FloatTensor(5,3)
